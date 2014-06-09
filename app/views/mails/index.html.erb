@@ -1,5 +1,5 @@
 <%= form_tag("/send", method: "post") do |f|%>
-binding.pry
+    <%= binding.pry %>
   <%= f.collection_select :task_id, @tasks, :id, :title %>
   <%= f.collection_select :subject_id, @subjects, :id, :title %>
   <%= f.submit_tag("Send") %>
