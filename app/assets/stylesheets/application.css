@@ -12,4 +12,25 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+
+@font-face {
+  font-family: "ChunkFive";
+  src: url('fonts/Chunkfive-webfont.eot');
+  src: url('fonts/Chunkfive-webfont.eot?#iefix') format('eot'), url('fonts/Chunkfive-webfont.ttf') format('truetype'), url('fonts/Chunkfive-webfont.otf') format('opentype'), url('fonts/Chunkfive-webfont.woff') format('woff');
+  font-weight: normal;
+}
+
+.top-bar {
+	background: #b5bdc8;
+    background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);
+}
+
+.top-bar .name h1 {
+  font-family: "ChunkFive", Arial, sans-serif;
+  text-transform: uppercase;
+}
+

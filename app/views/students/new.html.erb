@@ -1,0 +1,19 @@
+<%= form_for @student do |f| %>
+	<%= f.label :first_name %>  
+    <%= f.text_field :first_name %>
+	<%= f.label :last_name %>  
+    <%= f.text_field :last_name %>
+    <%= f.label :email %>  
+    <%= f.text_field :email %>
+    <%= f.label :phone %>  
+    <%= f.text_field :phone %>
+    <%= f.label :address %>  
+    <%= f.text_field :address %>
+    <%= f.label :school %>  
+    <%= f.text_field :school %>
+    <%= f.label :subjects %>
+     <%= f.collection_check_boxes(:subject_ids, @subjects, :id, :title) %>
+
+
+    <%= f.submit "Submit" %>
+<% end %>

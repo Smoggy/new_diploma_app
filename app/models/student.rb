@@ -17,4 +17,8 @@ class Student < ActiveRecord::Base
 	def full_name
 		"#{first_name} #{last_name}"
 	end
+
+	def subject_titles
+		subjects.pluck(:title).join(", ")
+	end
 end
