@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
 	has_and_belongs_to_many :subjects
+	has_many :task_reports
 
 	def self.find_by_subject subject
 		joins(:subjects).where("subjects.title = ?", subject)

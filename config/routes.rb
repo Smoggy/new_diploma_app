@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   
   get 'static_pages/index'
   get 'mails/index'
-  post 'mails/send'
+  post 'mails/send_mail'
+  post 'mails/receive'
 
   resources :tasks
   resources :students

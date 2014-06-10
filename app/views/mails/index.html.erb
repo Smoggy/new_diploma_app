@@ -1,6 +1,16 @@
-<%= form_tag("/send", method: "post") do |f|%>
-    <%= binding.pry %>
-  <%= f.collection_select :task_id, @tasks, :id, :title %>
-  <%= f.collection_select :subject_id, @subjects, :id, :title %>
-  <%= f.submit_tag("Send") %>
+<%= form_tag(controller: "mails", action: "send_mail", method: "post") do %>
+  <%= collection_select :task, :id, @tasks, :id, :title %>
+  <%= collection_select :subject, :id, @subjects, :id, :title %>
+  <%= submit_tag("Send") %>
+<% end %>
+
+<%= form_tag(controller: "mails", action: "receive", method: "post") do %>
+  <%= collection_select :task, :id, @tasks, :id, :title %>
+  <%= submit_tag("Send") %>
+<% end %>
+
+<% unless @task_reports.nil? %>
+	<% @task_reports.each do |tr| %>
+		<p> <%= tr.id %>
+	<% end %>
 <% end %>
