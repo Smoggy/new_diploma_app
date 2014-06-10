@@ -3,6 +3,7 @@ class MailsController < ApplicationController
 	def index
 		@tasks = Task.all
 		@subjects = Subject.all
+		@task_reports = TaskReport.all
 	end
 
 	def send_mail

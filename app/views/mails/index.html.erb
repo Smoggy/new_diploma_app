@@ -12,5 +12,6 @@
 <% unless @task_reports.nil? %>
 	<% @task_reports.each do |tr| %>
 		<p> <%= tr.id %>
+		<p> <%= tr.status %>
 	<% end %>
 <% end %>
