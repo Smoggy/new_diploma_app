@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'mails/index'
   post 'mails/send_mail'
   post 'mails/receive'
+  get 'mails/send_task'
 
   resources :tasks
   resources :students

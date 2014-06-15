@@ -3,7 +3,15 @@ class MailsController < ApplicationController
 	def index
 		@tasks = Task.all
 		@subjects = Subject.all
-		@task_reports = TaskReport.all
+		if params[:format]
+			@current_task = Task.find_by_id params[:format]
+			@task_reports =@current_task.task_reports.includes(:student)
+		end
+	end
+
+	def send_task
+		@tasks = Task.all
+		@subjects = Subject.all
 	end
 
 	def send_mail
@@ -31,7 +39,7 @@ class MailsController < ApplicationController
   				task_report = @task_reports.joins(:student).where("'students'.'email' = ?", email.from.first).first
   				task_report.update(status: 1) if task_report
   			end
-		redirect_to mails_index_path
+		redirect_to mails_index_path(task)
 	end
 
 

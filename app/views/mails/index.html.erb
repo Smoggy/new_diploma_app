@@ -1,17 +1,27 @@
-<%= form_tag(controller: "mails", action: "send_mail", method: "post") do %>
-  <%= collection_select :task, :id, @tasks, :id, :title %>
-  <%= collection_select :subject, :id, @subjects, :id, :title %>
-  <%= submit_tag("Send") %>
-<% end %>
+
+<%= link_to "Send Tasks", controller: :mails, action: :send_task, method: :get %>
 
 <%= form_tag(controller: "mails", action: "receive", method: "post") do %>
   <%= collection_select :task, :id, @tasks, :id, :title %>
-  <%= submit_tag("Send") %>
+  <%= submit_tag("Check") %>
 <% end %>
 
 <% unless @task_reports.nil? %>
+	<table>
+	<thead>
+		 <tr>
+	      <th>Full Name</th>
+	      <th>Status</th>
+	    </tr>
+
+	</thead>
+	<tbody>
 	<% @task_reports.each do |tr| %>
-		<p> <%= tr.id %>
-		<p> <%= tr.status %>
+		<tr> 
+			<td><%= tr.student.full_name %> </td>
+			<td> <%= tr.status %> </td>
+		<tr>
 	<% end %>
+	</tbody>
+	</table>
 <% end %>
