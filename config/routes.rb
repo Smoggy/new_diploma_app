@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'mails/receive'
   get 'mails/send_task'
 
+  root "static_pages#index"
+
   resources :tasks
   resources :students
   resources :subjects

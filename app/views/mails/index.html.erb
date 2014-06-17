@@ -1,9 +1,9 @@
 
-<%= link_to "Send Tasks", controller: :mails, action: :send_task, method: :get %>
+<%= link_to "Отправить задание", controller: :mails, action: :send_task, method: :get %>
 
 <%= form_tag({controller: "mails", action: "receive", method: "post"}, {class: "report_form"} ) do %>
   <%= collection_select :task, :id, @tasks, :id, :title %>
-  <%= submit_tag("Check") %>
+  <%= submit_tag("Проверить") %>
 <% end %>
 
 <% unless @task_reports.nil? %>
@@ -23,7 +23,7 @@
 			<td><%= tr.student.full_name %> </td>
 			<td><%= tr.student.email %> </td>
 			<td><%= tr.task.title %> </td>
-			<td> <%= tr.status %> </td>
+			<td> <%= status_translate tr %> </td>
 		<tr>
 	<% end %>
 	</tbody>

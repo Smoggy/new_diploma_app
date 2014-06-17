@@ -1,19 +1,27 @@
 <%= form_for @student do |f| %>
-	<%= f.label :first_name %>  
+	<%= f.label "Имя" %>  
     <%= f.text_field :first_name %>
-	<%= f.label :last_name %>  
+	<%= f.label "Фамилия" %>  
     <%= f.text_field :last_name %>
     <%= f.label :email %>  
     <%= f.text_field :email %>
-    <%= f.label :phone %>  
+    <%= f.label "Телефон" %>  
     <%= f.text_field :phone %>
-    <%= f.label :address %>  
+    <%= f.label "Домашний адрес" %>  
     <%= f.text_field :address %>
-    <%= f.label :school %>  
+    <%= f.label "Школа" %>  
     <%= f.text_field :school %>
-    <%= f.label :subjects %>
-     <%= f.collection_check_boxes(:subject_ids, @subjects, :id, :title) %>
+    <%= f.label "Предметы" %>
+    <div class = "subject_box" >
+    <ul class="two-col-special">
+        <% @subjects.each do |subject| %>
+            <li>
+                 <%= h subject.title -%>
+                <%= check_box_tag 'subject_ids[]', subject.id -%> 
+            </li>
+        <% end %>
+    </ul>
+     </div>
 
-
-    <%= f.submit "Submit" %>
+    <%= f.submit "Сохранить" %>
 <% end %>

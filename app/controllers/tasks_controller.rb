@@ -12,11 +12,6 @@ class TasksController < ApplicationController
   	redirect_to  tasks_path
   end
 
-  def send_email
-  	Student.send_task_for_subject "mathematics"
-  	redirect_to  tasks_path
-  end
-
   protected
 
   	def task_params

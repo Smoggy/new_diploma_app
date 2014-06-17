@@ -6,7 +6,8 @@
 form    {
 background: -webkit-gradient(linear, bottom, left 175px, from(#CCCCCC), to(#EEEEEE));
 background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-margin:auto;
+margin-left: 0;
+margin-top: 20px;
 position:relative;
 width:550px;
 font-family: Tahoma, Geneva, sans-serif;
@@ -41,4 +42,34 @@ input[type="checkbox"] {
 	width: 15px;
 	height: 15px;
 	display: inline;
+}
+
+.subject-box {
+	width: 500px;
+}
+
+.subject-box ul, li {
+    list-style-type: none;
+}
+
+.two-col-special {
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.two-col-special li {
+    display: inline-block;
+    width: 45%;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+    vertical-align: top; /* In case multi-word categories form two lines */
+}
+.two-col-special li:before {
+    padding: 5px;
+    margin-right: 5px; /* you can tweak the gap */
+    color: orange;
+    background-color: white; /* in case you want a color... */
+    display: inline-block;
 }

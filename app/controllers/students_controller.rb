@@ -7,7 +7,7 @@ class StudentsController < ApplicationController
 
 	def create
 		@student = Student.new student_params
-		subjects = Subject.where(id: params[:student][:subject_ids])
+		subjects = Subject.where(id: params[:subject_ids])
 		subjects.each do |subject|
 			@student.subjects << subject
 		end

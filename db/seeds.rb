@@ -7,36 +7,38 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-math = Subject.create(
-	title: "mathematics"
+Subject.create(
+	title: "Математика"
 	)
 
-history = Subject.create(
-	title: "history"
+Subject.create(
+	title: "Физика"
 	)
 
-first_student = Student.create(
-	first_name: "first",
-	last_name: "Student",
-	email: "avatar145@ukr.net",
+Subject.create(
+	title: "Биология"
 	)
 
-second_student = Student.create(
-	first_name: "second",
-	last_name: "Student",
-	email: "avatar145@mail.ru"
+Subject.create(
+	title: "Химия"
 	)
 
-
-third_student = Student.create(
-	first_name: "third",
-	last_name: "Student",
-	email: "departed07@mail.ru"
+Subject.create(
+	title: "Английский Язык"
 	)
 
-first_student.subjects << math
-second_student.subjects << history << math
-third_student.subjects << history
-first_student.save
-second_student.save
-third_student.save
+Subject.create(
+	title: "История Украины"
+	)
+
+Subject.create(
+	title: "Всемирная история"
+	)
+
+Subject.create(
+	title: "Украинский язык"
+	)
+
+Subject.create(
+	title: "Украинская литература"
+	)

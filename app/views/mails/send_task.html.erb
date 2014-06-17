@@ -1,5 +1,4 @@
 <%= form_tag(controller: "mails", action: "send_mail", method: "post") do %>
   <%= collection_select :task, :id, @tasks, :id, :title %>
   <%= collection_select :subject, :id, @subjects, :id, :title %>
-  <%= submit_tag("Send") %>
-<% end %>
+  <%= submit_tag("Отправить") %> <% end %>
