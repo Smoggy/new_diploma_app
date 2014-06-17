@@ -1,7 +1,7 @@
 
 <%= link_to "Send Tasks", controller: :mails, action: :send_task, method: :get %>
 
-<%= form_tag(controller: "mails", action: "receive", method: "post") do %>
+<%= form_tag({controller: "mails", action: "receive", method: "post"}, {class: "report_form"} ) do %>
   <%= collection_select :task, :id, @tasks, :id, :title %>
   <%= submit_tag("Check") %>
 <% end %>
@@ -10,8 +10,10 @@
 	<table>
 	<thead>
 		 <tr>
-	      <th>Full Name</th>
-	      <th>Status</th>
+	      <th>ФИО Студента</th>
+	      <th>Email</th>
+	      <th>Задание</th>
+	      <th>Статус</th>
 	    </tr>
 
 	</thead>
@@ -19,6 +21,8 @@
 	<% @task_reports.each do |tr| %>
 		<tr> 
 			<td><%= tr.student.full_name %> </td>
+			<td><%= tr.student.email %> </td>
+			<td><%= tr.task.title %> </td>
 			<td> <%= tr.status %> </td>
 		<tr>
 	<% end %>
