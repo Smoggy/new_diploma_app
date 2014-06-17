@@ -1,5 +1,6 @@
 class Student < ActiveRecord::Base
 	has_and_belongs_to_many :subjects
+	has_many :task_reports
 
 	def self.find_by_subject subject
 		joins(:subjects).where("subjects.title = ?", subject)
@@ -16,5 +17,9 @@ class Student < ActiveRecord::Base
 
 	def full_name
 		"#{first_name} #{last_name}"
+	end
+
+	def subject_titles
+		subjects.pluck(:title).join(", ")
 	end
 end

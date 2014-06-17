@@ -41,3 +41,9 @@ gem 'tzinfo'
 
 gem 'devise'
 gem 'paperclip'
+
+gem 'mail'
+
+gem 'pry'
+
+gem 'foundation-rails'

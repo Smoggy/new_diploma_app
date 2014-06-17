@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   
+  get 'static_pages/index'
+  get 'mails/index'
+  post 'mails/send_mail'
+  post 'mails/receive'
+  get 'mails/send_task'
 
   resources :tasks
+  resources :students
+  resources :subjects
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
