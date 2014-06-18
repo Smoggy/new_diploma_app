@@ -49,7 +49,7 @@ class MailsController < ApplicationController
 	  	#			file.original_filename = attachment.filename
 	  	#			file.content_type = attachment.mime_type
 	  	#			task_report.report_file = file
-	  	#		end
+	  			end
 	  			task_report.save
   			end
   		end
