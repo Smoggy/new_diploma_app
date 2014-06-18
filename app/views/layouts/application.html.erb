@@ -13,11 +13,11 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <div class="row">
-      <div class="large-9 push-3 columns">
+    <div class="wrapper">
+     <%= render 'layouts/sidebar' %>
+      <div class="table">
         <%= yield %>
       </div>
-      <%= render 'layouts/sidebar' %>
     </div>
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag "application" %>

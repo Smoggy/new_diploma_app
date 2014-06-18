@@ -1,19 +1,22 @@
 
-<%= link_to "Отправить задание", controller: :mails, action: :send_task, method: :get %>
 
-<%= form_tag({controller: "mails", action: "receive", method: "post"}, {class: "report_form"} ) do %>
+<div class="report_form">
+<%= form_tag({controller: "mails", action: "receive", method: "post"} ) do %>
   <%= collection_select :task, :id, @tasks, :id, :title %>
   <%= submit_tag("Проверить") %>
 <% end %>
+<%= link_to "Отправить задание", {controller: :mails, action: :send_task, method: :get},{class: "button small report_button"} %>
+</div>
 
-<% unless @task_reports.nil? %>
-	<table>
+
+	<table class = "report_table">
 	<thead>
 		 <tr>
 	      <th>ФИО Студента</th>
 	      <th>Email</th>
 	      <th>Задание</th>
 	      <th>Статус</th>
+	      <th></th>
 	    </tr>
 
 	</thead>
@@ -24,8 +27,12 @@
 			<td><%= tr.student.email %> </td>
 			<td><%= tr.task.title %> </td>
 			<td> <%= status_translate tr %> </td>
+			<th> 
+			<%  if tr.report_file.present? %>
+			<%= link_to "Скачать", download_report_path(report_id: tr.id) %>
+			<% end %> 
+			</th>
 		<tr>
 	<% end %>
 	</tbody>
 	</table>
-<% end %>

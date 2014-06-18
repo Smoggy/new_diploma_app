@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :tasks
   resources :students
   resources :subjects
+
+  controller :mails do
+    get '/download_report', to: 'mails#download_report'
+  end 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

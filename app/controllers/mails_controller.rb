@@ -6,6 +6,8 @@ class MailsController < ApplicationController
 		if params[:format]
 			@current_task = Task.find_by_id params[:format]
 			@task_reports =@current_task.task_reports.includes(:student)
+		else
+			@task_reports = TaskReport.all
 		end
 	end
 
@@ -52,6 +54,12 @@ class MailsController < ApplicationController
   			end
   		end
 		redirect_to mails_index_path(task)
+	end
+
+	def download_report
+
+		tr = TaskReport.find_by_id(params[:report_id])
+		send_file(tr.report_file.path , filename: tr.report_file_file_name, type: tr.report_file_content_type)
 	end
 
 
