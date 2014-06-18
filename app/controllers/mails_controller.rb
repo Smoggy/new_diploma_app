@@ -44,11 +44,11 @@ class MailsController < ApplicationController
   				task_report.status =  1
   				attachment = email.attachments.first
   				if attachment
-	  			#	file = StringIO.new(attachment.decoded)
-	  			#	file.class.class_eval { attr_accessor :original_filename, :content_type }
-	  			#	file.original_filename = attachment.filename
-	  			#	file.content_type = attachment.mime_type
-	  			#	task_report.report_file = file
+	  				file = StringIO.new(attachment.decoded)
+	  				file.class.class_eval { attr_accessor :original_filename, :content_type }
+	  				file.original_filename = attachment.filename
+	  				file.content_type = attachment.mime_type
+	  				task_report.report_file = file
 	  			end
 	  			task_report.save
   			end
