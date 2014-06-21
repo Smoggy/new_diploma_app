@@ -73,3 +73,12 @@ input[type="checkbox"] {
     background-color: white; /* in case you want a color... */
     display: inline-block;
 }
+
+.right-sidebar {
+    width: 200px;
+    float: right;
+}
+
+.right-sidebar form{
+    width: inherit;
+}

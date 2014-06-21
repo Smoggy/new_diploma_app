@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   controller :mails do
     get '/download_report', to: 'mails#download_report'
   end 
+
+  controller :students do
+    get 'xls_index'
+    get 'filter'
+  end
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

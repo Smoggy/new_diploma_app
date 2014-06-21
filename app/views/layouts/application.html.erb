@@ -14,10 +14,8 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="wrapper">
-     <%= render 'layouts/sidebar' %>
-      <div class="table">
-        <%= yield %>
-      </div>
+      <%= render 'layouts/sidebar' %>
+      <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
     <%= javascript_include_tag "application" %>

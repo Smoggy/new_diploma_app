@@ -1,8 +1,8 @@
 <%= form_for @task do |f| %>
-	<%= f.label :title %>  
+	<%= f.label "Название" %>  
     <%= f.text_field :title %>
-	<%= f.label :task_file %>  
+	<%= f.label "Файл" %>  
     <%= f.file_field :task_file %>
 
-    <%= f.submit "Submit" %>
+    <%= f.submit "Сохранить" %>
 <% end %>

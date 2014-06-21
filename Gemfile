@@ -45,7 +45,7 @@ gem 'devise'
 gem 'paperclip'
 
 gem 'mail'
-
+gem 'axlsx'
 gem 'pg'
 gem 'pry'
 
