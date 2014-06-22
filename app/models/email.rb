@@ -1,5 +1,0 @@
-class Email
-
-	
-
-end

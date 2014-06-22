@@ -1,18 +1,18 @@
-class MailsController < ApplicationController
+class Zno::MailsController < ZnoController
 
 	def index
-		@tasks = Task.all
+		@tasks = Task.where(grade: "zno", semester: @semester.name)
 		@subjects = Subject.all
 		if params[:format]
 			@current_task = Task.find_by_id params[:format]
 			@task_reports =@current_task.task_reports.includes(:student)
 		else
-			@task_reports = TaskReport.all
+			@task_reports = TaskReport.where(grade: "zno", semester: @semester.name)
 		end
 	end
 
 	def send_task
-		@tasks = Task.all
+		@tasks = Task.where(grade: "zno", semester: @semester.name)
 		@subjects = Subject.all
 	end
 
@@ -20,15 +20,15 @@ class MailsController < ApplicationController
 		@task  =Task.find_by_id params[:task][:id]
 		@subject = Subject.find_by_id params[:subject][:id]
 		task_reports =[]
-		@subject.students.each do |student|
+		@subject.students.where(grade: "11", semester: @semester.name).each do |student|
 			TaskMailer.send_task(@task, student).deliver
-			task_reports << TaskReport.new(task: @task, student: student)
+			task_reports << TaskReport.new(task: @task, student: student, grade: "11")
 		end
 		ActiveRecord::Base.transaction do
 			task_reports.each { |tr| tr.save }
 		end
 
-		redirect_to mails_index_path
+		redirect_to zno_mails_index_path
 	end
 
 	def receive
@@ -53,7 +53,7 @@ class MailsController < ApplicationController
 	  			task_report.save
   			end
   		end
-		redirect_to mails_index_path(task)
+		redirect_to zno_mails_index_path(task)
 	end
 
 	def download_report

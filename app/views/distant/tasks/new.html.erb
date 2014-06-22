@@ -1,4 +1,7 @@
-<%= form_for @task do |f| %>
+<%= render 'distant/layouts/sidebar' %>
+
+<div class="task-form">
+<%= form_for @task, url: {controller: "distant/tasks" ,action: "create"} do |f| %>
 	<%= f.label "Название" %>  
     <%= f.text_field :title %>
 	<%= f.label "Файл" %>  
@@ -6,3 +9,5 @@
 
     <%= f.submit "Сохранить" %>
 <% end %>
+
+</div>

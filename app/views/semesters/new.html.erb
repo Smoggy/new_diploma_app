@@ -1,0 +1,14 @@
+<div class ="semester-form">
+
+	<%= form_tag(action: "create", method: "post" ) do %>
+	  <%= collection_select :semester, :id, @semesters, :id, :name, prompt: "Выберите семестр" %>
+	  <%= submit_tag("Выбрать") %>
+	<% end %>
+
+	<%= form_for @semester do |f| %>
+		<%= f.label "Название" %>  
+    	<%= f.text_field :name %>
+   	 <%= f.submit "Сохранить" %>
+	<% end %>
+
+</div>

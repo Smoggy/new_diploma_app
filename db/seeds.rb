@@ -42,3 +42,8 @@ Subject.create(
 Subject.create(
 	title: "Украинская литература"
 	)
+
+Semester.create(
+	name: "2014",
+	active: true
+)

@@ -6,7 +6,6 @@
 form    {
 background: -webkit-gradient(linear, bottom, left 175px, from(#CCCCCC), to(#EEEEEE));
 background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-margin-left: 100px;
 margin-top: 20px;
 position:relative;
 width:550px;
@@ -81,4 +80,11 @@ input[type="checkbox"] {
 
 .right-sidebar form{
     width: inherit;
+}
+
+
+.menu {
+    margin-left: 600px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }

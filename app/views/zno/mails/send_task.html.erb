@@ -1,0 +1,15 @@
+      <%= render 'zno/layouts/sidebar' %>
+
+
+
+<div class="mails-form">
+
+
+<%= form_tag(controller: "zno/mails", action: "send_mail", method: "post") do %>
+	<%= label_tag "Задание" %>  
+  <%= collection_select :task, :id, @tasks, :id, :title, prompt: "Выберите задание" %>
+  <p></p>
+  <%= label_tag "Предмет" %> 
+  <%= collection_select :subject, :id, @subjects, :id, :title, prompt: "Выберите предмет" %>
+  <%= submit_tag("Отправить") %> <% end %>
+</div>

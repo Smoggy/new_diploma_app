@@ -1,0 +1,2 @@
+class ZnoController < ApplicationController
+end

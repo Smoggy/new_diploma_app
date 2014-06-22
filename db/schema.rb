@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617083017) do
+ActiveRecord::Schema.define(version: 20140622154447) do
+
+  create_table "semesters", force: true do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "students", force: true do |t|
     t.string   "first_name"
@@ -22,6 +29,8 @@ ActiveRecord::Schema.define(version: 20140617083017) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "grade"
+    t.string   "semester"
   end
 
   create_table "students_subjects", id: false, force: true do |t|
@@ -48,6 +57,8 @@ ActiveRecord::Schema.define(version: 20140617083017) do
     t.string   "report_file_content_type"
     t.integer  "report_file_file_size"
     t.datetime "report_file_updated_at"
+    t.string   "grade"
+    t.string   "semester"
   end
 
   create_table "tasks", force: true do |t|
@@ -58,6 +69,8 @@ ActiveRecord::Schema.define(version: 20140617083017) do
     t.string   "task_file_content_type"
     t.integer  "task_file_file_size"
     t.datetime "task_file_updated_at"
+    t.string   "semester"
+    t.string   "grade"
   end
 
   create_table "users", force: true do |t|

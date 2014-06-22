@@ -1,0 +1,2 @@
+class DistantController < ApplicationController
+end

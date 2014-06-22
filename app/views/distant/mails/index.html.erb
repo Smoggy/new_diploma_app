@@ -1,0 +1,39 @@
+<%= render 'distant/layouts/sidebar' %>
+
+<div class="report_form">
+<%= form_tag({controller: "distant/mails", action: "receive", method: "post"} ) do %>
+  <%= collection_select :task, :id, @tasks, :id, :title, prompt: "Выберите задание" %>
+  <%= submit_tag("Проверить") %>
+<% end %>
+<%= link_to "Отправить задание", {controller: :mails, action: :send_task, method: :get},{class: "button small report_button"} %>
+</div>
+
+	<div class="content-table" >
+	<table class = "report_table">
+	<thead>
+		 <tr>
+	      <th>ФИО Студента</th>
+	      <th>Email</th>
+	      <th>Задание</th>
+	      <th>Статус</th>
+	      <th></th>
+	    </tr>
+
+	</thead>
+	<tbody>
+	<% @task_reports.each do |tr| %>
+		<tr> 
+			<td><%= tr.student.full_name %> </td>
+			<td><%= tr.student.email %> </td>
+			<td><%= tr.task.title %> </td>
+			<td> <%= status_translate tr %> </td>
+			<th> 
+			<%  if tr.report_file.present? %>
+			<%= link_to "Скачать", download_report_path(report_id: tr.id) %>
+			<% end %> 
+			</th>
+		<tr>
+	<% end %>
+	</tbody>
+	</table>
+</div>

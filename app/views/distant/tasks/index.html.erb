@@ -1,8 +1,13 @@
+
+<%= render 'distant/layouts/sidebar' %>
+
+	<div class="content-table" >
 <table>
 	<thead>
     <tr>
       <th>Название</th>
       <th>Создан</th>
+      <th></th>
     </tr>
   </thead>
    <tbody>
@@ -14,4 +19,5 @@
 		<% end %>
 	</tbody>
 </table>
-<%= link_to "Добавить задание", new_task_path, class: "button small task_button" %>
+</div>
+<%= link_to "Добавить задание", new_distant_task_path, class: "button small task_button" %>

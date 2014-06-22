@@ -1,0 +1,10 @@
+<%= render 'distant/layouts/sidebar' %>
+
+<div class="mails-form">
+
+<%= form_tag(controller: "distant/mails", action: "send_mail", method: "post") do %>
+  <%= collection_select :task, :id, @tasks, :id, :title, prompt: "Выберите задание" %>
+  <%= collection_select :subject, :id, @subjects, :id, :title,  prompt: "Выберите предмет" %>
+  <%= submit_tag("Отправить") %> 
+  <% end %>
+</div>

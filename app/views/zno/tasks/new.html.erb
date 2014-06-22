@@ -1,0 +1,14 @@
+
+      <%= render 'zno/layouts/sidebar' %>
+
+<div class="task-form">
+<%= form_for @task, url: { controller: "zno/tasks",action: "create"} do |f| %>
+	<%= f.label "Название" %>  
+    <%= f.text_field :title %>
+	<%= f.label "Файл" %>  
+    <%= f.file_field :task_file %>
+
+    <%= f.submit "Сохранить" %>
+<% end %>
+
+</div>

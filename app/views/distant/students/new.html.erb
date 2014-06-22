@@ -1,4 +1,8 @@
-<%= form_for @student do |f| %>
+
+<%= render 'distant/layouts/sidebar' %>
+
+<div class="student-form" >
+<%= form_for @student, url: {controller: "distant/students" ,action: "create"} do |f| %>
 	<%= f.label "Имя" %>  
     <%= f.text_field :first_name %>
 	<%= f.label "Фамилия" %>  
@@ -11,6 +15,8 @@
     <%= f.text_field :address %>
     <%= f.label "Школа" %>  
     <%= f.text_field :school %>
+    <%= f.label "Класс" %>  
+    <%= f.text_field :grade %>
     <%= f.label "Предметы" %>
     <div class = "subject_box" >
     <ul class="two-col-special">
@@ -22,6 +28,6 @@
         <% end %>
     </ul>
      </div>
-
     <%= f.submit "Сохранить" %>
 <% end %>
+<div>

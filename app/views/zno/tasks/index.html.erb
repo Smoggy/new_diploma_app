@@ -1,0 +1,22 @@
+      <%= render 'zno/layouts/sidebar' %>
+	<div class="content-table task" >
+
+<table>
+	<thead>
+    <tr>
+      <th>Название</th>
+      <th>Создан</th>
+      <th></th>
+    </tr>
+  </thead>
+   <tbody>
+		<% @tasks.each do |task| %>
+		<tr>
+			<td><%= task.title %></td>
+			<td><%= task.created_at %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
+<%= link_to "Добавить задание", new_zno_task_path, class: "button task_button" %>

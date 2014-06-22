@@ -1,14 +1,14 @@
-
+      <%= render 'zno/layouts/sidebar' %>
 
 <div class="report_form">
-<%= form_tag({controller: "mails", action: "receive", method: "post"} ) do %>
-  <%= collection_select :task, :id, @tasks, :id, :title %>
+<%= form_tag({controller: "zno/mails", action: "receive", method: "post"} ) do %>
+  <%= collection_select :task, :id, @tasks, :id, :title, prompt: "Выберите задание" %>
   <%= submit_tag("Проверить") %>
 <% end %>
 <%= link_to "Отправить задание", {controller: :mails, action: :send_task, method: :get},{class: "button small report_button"} %>
 </div>
 
-
+	<div class="content-table" >
 	<table class = "report_table">
 	<thead>
 		 <tr>
@@ -36,3 +36,4 @@
 	<% end %>
 	</tbody>
 	</table>
+</div>

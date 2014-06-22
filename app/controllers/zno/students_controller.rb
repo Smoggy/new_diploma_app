@@ -1,4 +1,4 @@
-class StudentsController < ApplicationController
+class Zno::StudentsController < ZnoController
 
 	def new
 		@student = Student.new
@@ -7,22 +7,30 @@ class StudentsController < ApplicationController
 
 	def create
 		@student = Student.new student_params
+		@student.grade = "11"
+		@student.semester = @semester.name
 		subjects = Subject.where(id: params[:subject_ids])
 		subjects.each do |subject|
 			@student.subjects << subject
 		end
 
 		if @student.save
-			redirect_to students_path
+			redirect_to zno_students_path
 		else
 			render 'new'
 		end
 	end
 
 	def index
-		@students = Student.all
-		@subjects = Subject.all
-		@student_ids = @students.map {|s| s.id }
+		unless params[:student_ids]
+			@students = Student.where(grade: "11", semester: @semester.name)
+			@subjects = Subject.all
+			@student_ids = @students.map {|s| s.id }
+		else
+			@students = Student.where(id: params[:student_ids])
+			@subjects = Subject.all
+			@student_ids = params[:student_ids]
+		end
 	end
 
 	def show
@@ -31,14 +39,24 @@ class StudentsController < ApplicationController
 
 	def filter
 		if params[:subject][:id].present?
-			@students = Student.joins(:subjects).where("subjects.id = ?", params[:subject][:id])
+			@students = Student.joins(:subjects).where("grade = ? and semester = ? and subjects.id = ?","11", @semester.name, params[:subject][:id])
 			@student_ids = @students.map { |s| s.id }
 		else
-			@students = Student.all
+			@students = Student.where(grade: "11")
 			@student_ids = @students.map {|s| s.id }
 		end
 		@subjects = Subject.all
 		render 'index'
+	end
+
+	def delete
+		@student = Student.find(params[:student_id])
+	end
+
+	def destroy
+     	@student = Student.find(params[:id])
+     	@student.destroy
+     	redirect_to zno_students_path(student_ids: params[:student_ids])
 	end
 
 	def xls_index

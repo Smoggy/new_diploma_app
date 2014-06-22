@@ -1,0 +1,43 @@
+      <%= render 'zno/layouts/sidebar' %>
+
+
+<div class="content" >
+	
+	<div class="content-table" >
+		<table>
+			<thead>
+		    <tr>
+		      <th>ФИО студента</th>
+		      <th>email</th>
+		      <th>Адрес</th>
+		      <th>Телефон</th>
+		      <th>Предметы</th>
+		      <th></th>
+		    </tr>
+		  </thead>
+		   <tbody>
+				<% @students.each do |student| %>
+				<tr>
+					<td><%= student.full_name %></td>
+					<td><%= student.email %></td>
+					<td><%= student.address %></td>
+					<td><%= student.phone %></td>
+					<td class="subject-td"><%= student.subject_titles %></td>
+					<td><%= link_to "удалить", zno_student_path(id: student.id, student_ids: @student_ids), method: :delete, data: { confirm: "Вы уверены?" } %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="right-sidebar" >
+	<%= form_tag({ controller: "students", action: "filter" }, method: :get) do %>
+		  <%= label_tag "Предмет" %>
+		  <p />
+	  <%= collection_select :subject, :id, @subjects, :id, :title, prompt: "Все" %>
+	  <%= submit_tag("Найти") %>
+	<% end %>
+
+	<%= link_to "Добавить студента", new_zno_student_path, class: "button small" %>
+	<%= link_to "Excel", zno_xls_index_path(student_ids: @student_ids),  class: "button small" %>
+</div>

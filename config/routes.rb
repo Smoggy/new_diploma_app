@@ -1,24 +1,54 @@
 Rails.application.routes.draw do
   
-  get 'static_pages/index'
-  get 'mails/index'
-  post 'mails/send_mail'
-  post 'mails/receive'
-  get 'mails/send_task'
-
   root "static_pages#index"
+  
 
-  resources :tasks
-  resources :students
-  resources :subjects
+  resources :semesters, only: [:new, :create ]
 
-  controller :mails do
-    get '/download_report', to: 'mails#download_report'
-  end 
+  namespace :zno do
+    get 'mails/index'
+    post 'mails/send_mail'
+    post 'mails/receive'
+    get 'mails/send_task'
 
-  controller :students do
-    get 'xls_index'
-    get 'filter'
+    
+
+    resources :tasks
+    resources :students
+    resources :subjects
+
+    controller :mails do
+      get '/download_report', to: 'mails#download_report'
+    end 
+
+    controller :students do
+      get 'xls_index'
+      get 'filter'
+    end
+
+  end
+
+  namespace :distant do
+    get 'mails/index'
+    post 'mails/send_mail'
+    post 'mails/receive'
+    get 'mails/send_task'
+
+    
+
+    resources :tasks
+    resources :students
+    resources :subjects
+
+    controller :mails do
+      get '/download_report', to: 'mails#download_report'
+    end 
+
+    controller :students do
+      get 'xls_index'
+      get 'filter'
+    end
+
   end
 
   devise_for :users
