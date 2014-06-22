@@ -2,6 +2,7 @@ class Student < ActiveRecord::Base
 	has_and_belongs_to_many :subjects
 	has_many :task_reports
 	validates :email, presence: true
+	validates :first_name, presence: true
 
 	def self.find_by_subject subject
 		joins(:subjects).where("subjects.title = ?", subject)
