@@ -34,6 +34,7 @@ class Zno::MailsController < ZnoController
 	def receive
 		task = Task.find_by_id params[:task][:id]
 		@task_reports = task.task_reports
+		binding.pry
 		emails = Mail.all.select { |email| email.subject.include? task.title }
 
 

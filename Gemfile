@@ -51,3 +51,4 @@ gem 'pry'
 
 gem 'foundation-rails'
 gem 'nokogiri'
+gem 'rails_12factor', group: :production
