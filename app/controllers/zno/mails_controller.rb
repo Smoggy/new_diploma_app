@@ -7,7 +7,7 @@ class Zno::MailsController < ZnoController
 			@current_task = Task.find_by_id params[:format]
 			@task_reports =@current_task.task_reports.includes(:student)
 		else
-			@task_reports = TaskReport.where(grade: "zno", semester: @semester.name)
+			@task_reports = TaskReport.where(grade: "11", semester: @semester.name)
 		end
 	end
 

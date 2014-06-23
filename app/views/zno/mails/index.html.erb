@@ -29,7 +29,7 @@
 			<td> <%= status_translate tr %> </td>
 			<th> 
 			<%  if tr.report_file.present? %>
-			<%= link_to "Скачать", download_report_path(report_id: tr.id) %>
+			<%= link_to "Скачать", zno_download_report_path(report_id: tr.id) %>
 			<% end %> 
 			</th>
 		<tr>

@@ -50,3 +50,4 @@ gem 'pg'
 gem 'pry'
 
 gem 'foundation-rails'
+gem 'nokogiri'

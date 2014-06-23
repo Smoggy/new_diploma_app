@@ -3,6 +3,7 @@ class Student < ActiveRecord::Base
 	has_many :task_reports
 	validates :email, presence: true
 	validates :first_name, presence: true
+	default_scope { order(:last_name => :asc)}
 
 	def self.find_by_subject subject
 		joins(:subjects).where("subjects.title = ?", subject)

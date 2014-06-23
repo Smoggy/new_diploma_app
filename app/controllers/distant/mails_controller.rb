@@ -36,7 +36,6 @@ class Distant::MailsController < DistantController
 		@task_reports = task.task_reports
 		emails = Mail.all.select { |email| email.subject.include? task.title }
 
-
   		emails.each do |email|
   			task_report = @task_reports.joins(:student).where("students.email = ?", email.from.first).first
   		
