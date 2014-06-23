@@ -9,10 +9,10 @@ ActionMailer::Base.delivery_method = :smtp
 
 
 ActionMailer::Base.smtp_settings = {
-   address: "smtp.ukr.net",
-   port: 2525,
-   authentication: :plain,
-   tls: true,
-   user_name: "test_mailer@ukr.net",
-   password: "qwerty123"
+   address: "smtp.gmail.com",
+   port: 587,
+   authentication: :login,
+   enable_starttls_auto: true,
+   user_name: "shdo@karazin.ua",
+   password: "lyudmila7212"
 }

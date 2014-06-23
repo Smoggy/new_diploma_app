@@ -1,5 +1,5 @@
 class TaskMailer < ActionMailer::Base
-  default from: "test_mailer@ukr.net"
+  default from: "shdo@karazin.ua"
 
   def send_task task, student
   	@task = task
