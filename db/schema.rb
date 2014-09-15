@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140622154447) do
+ActiveRecord::Schema.define(version: 20140914144456) do
 
   create_table "semesters", force: true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140622154447) do
     t.datetime "updated_at"
     t.string   "grade"
     t.string   "semester"
+    t.string   "skype",      default: ""
   end
 
   create_table "students_subjects", id: false, force: true do |t|

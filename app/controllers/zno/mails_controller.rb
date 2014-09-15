@@ -19,41 +19,48 @@ class Zno::MailsController < ZnoController
 	def send_mail
 		@task  =Task.find_by_id params[:task][:id]
 		@subject = Subject.find_by_id params[:subject][:id]
-		task_reports =[]
+		task_reports, threads =[], []
+
 		@subject.students.where(grade: "11", semester: @semester.name).each do |student|
-			TaskMailer.send_task(@task, student).deliver
-			task_reports << TaskReport.new(task: @task, student: student, grade: "11")
-		end
-		ActiveRecord::Base.transaction do
-			task_reports.each { |tr| tr.save }
+			threads << Thread.new do
+				TaskMailer.send_task(@task, student).deliver
+				task_report = TaskReport.new(task: @task, student: student, grade: "11")
+				task_report.save
+				ActiveRecord::Base.connection.close
+			end
 		end
 
+		threads.each &:join
 		redirect_to zno_mails_index_path
 	end
 
 	def receive
 		task = Task.find_by_id params[:task][:id]
 		@task_reports = task.task_reports
-		binding.pry
-		emails = Mail.all.select { |email| email.subject.include? task.title }
 
+		emails = Mail.find(:what => :last, :count => 10).select { |email| email.subject.include? task.title }
 
+		threads = []
   		emails.each do |email|
-  			task_report = @task_reports.joins(:student).where("students.email = ?", email.from.first).first
-  		
-  			if task_report
-  				task_report.status =  1
-  				attachment = email.attachments.first
-  				if attachment
-	  				file = StringIO.new(attachment.decoded)
-	  				file.class.class_eval { attr_accessor :original_filename, :content_type }
-	  				file.original_filename = attachment.filename
-	  				file.content_type = attachment.mime_type
-	  				task_report.report_file = file
+  			threads << Thread.new do
+	  			task_report = @task_reports.joins(:student).where("students.email = ?", email.from.first).first
+	  		
+	  			if task_report
+	  				task_report.status =  1
+	  				attachment = email.attachments.first
+	  				if attachment
+		  				file = StringIO.new(attachment.decoded)
+		  				file.class.class_eval { attr_accessor :original_filename, :content_type }
+		  				file.original_filename = attachment.filename
+		  				file.content_type = attachment.mime_type
+		  				task_report.report_file = file
+		  			end
+		  			task_report.save
+	  			ActiveRecord::Base.connection.close
 	  			end
-	  			task_report.save
-  			end
+	  		end	
   		end
+  		threads.each &:join
 		redirect_to zno_mails_index_path(task)
 	end
 

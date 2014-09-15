@@ -7,8 +7,10 @@
 		<table>
 			<thead>
 		    <tr>
+		      <th>ID</th>
 		      <th>ФИО студента</th>
 		      <th>email</th>
+		      <th>Skype</th>
 		      <th>Адрес</th>
 		      <th>Телефон</th>
 		      <th>Предметы</th>
@@ -16,10 +18,12 @@
 		    </tr>
 		  </thead>
 		   <tbody>
-				<% @students.each do |student| %>
+				<% @students.each_with_index do |student, index| %>
 				<tr>
+					<th><%= index+1 %></th>
 					<td><%= student.full_name %></td>
 					<td><%= student.email %></td>
+					<td><%= student.skype %></td>
 					<td><%= student.address %></td>
 					<td><%= student.phone %></td>
 					<td class="subject-td"><%= student.subject_titles %></td>
