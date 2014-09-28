@@ -20,6 +20,25 @@ class Zno::StudentsController < ZnoController
 			render 'new'
 		end
 	end
+	def edit
+		@subjects = Subject.all
+		@student = Student.find params[:id]
+	end
+
+	def update
+		@student = Student.find params[:id]
+		@student.update student_params
+		@student.semester = @semester.name
+		subjects = Subject.where(id: params[:subject_ids])
+		subjects.each do |subject|
+			@student.subjects << subject
+		end
+		if @student
+			redirect_to zno_students_path
+		else
+			render 'edit'
+		end
+	end
 
 	def index
 		unless params[:student_ids]
@@ -64,10 +83,10 @@ class Zno::StudentsController < ZnoController
    		workbook = package.workbook
     	@students = Student.where(id: params[:student_ids])
     	workbook.add_worksheet(name: "Студенты") do |sheet|
-     		sheet.add_row ["ФИО Студента", "Email", "Адрес", "Телефон","Школа" ,"Предметы"]
+     		sheet.add_row ["ФИО Студента", "Email", "Адрес", "Skype","Телефон","Школа" ,"Предметы"]
      		@students.each do |s|
      			subjects = s.subjects.map { |s| s.title}.join(", ")
-        		sheet.add_row [s.full_name, s.email, s.address, s.phone, s.school, subjects]
+        		sheet.add_row [s.full_name, s.email, s.address, s.skype ,s.phone, s.school, subjects]
       		end
     	end
     	package.serialize "Basic.xlsx"
@@ -76,6 +95,6 @@ class Zno::StudentsController < ZnoController
 
 	protected 
 		def student_params
-			params.require(:student).permit(:first_name, :last_name, :email, :phone, :address, :school)
+			params.require(:student).permit(:first_name, :last_name, :email, :phone, :address, :school, :skype)
 		end
 end

@@ -15,6 +15,7 @@
 		      <th>Телефон</th>
 		      <th>Предметы</th>
 		      <th></th>
+		      <th></th>
 		    </tr>
 		  </thead>
 		   <tbody>
@@ -27,6 +28,7 @@
 					<td><%= student.address %></td>
 					<td><%= student.phone %></td>
 					<td class="subject-td"><%= student.subject_titles %></td>
+					<td><%= link_to "редактировать", edit_zno_student_path(id: student.id) %></td>
 					<td><%= link_to "удалить", zno_student_path(id: student.id, student_ids: @student_ids), method: :delete, data: { confirm: "Вы уверены?" } %></td>
 				</tr>
 				<% end %>

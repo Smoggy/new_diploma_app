@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-	has_and_belongs_to_many :subjects
+	has_and_belongs_to_many :subjects, -> { uniq }
 	has_many :task_reports
 	validates :email, presence: true
 	validates :first_name, presence: true
@@ -19,7 +19,7 @@ class Student < ActiveRecord::Base
 	end
 
 	def full_name
-		"#{first_name} #{last_name}"
+		"#{last_name} #{first_name} "
 	end
 
 	def subject_titles

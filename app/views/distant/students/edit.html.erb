@@ -1,8 +1,8 @@
-      <%= render 'zno/layouts/sidebar' %>
 
+<%= render 'distant/layouts/sidebar' %>
 
 <div class="student-form" >
-<%= form_for @student, url: { controller: "zno/students",action: "create"} do |f| %>
+<%= form_for @student, url: {controller: "distant/students" ,action: "update"} do |f| %>
 	<%= f.label "Имя" %>  
     <%= f.text_field :first_name %>
 	<%= f.label "Фамилия" %>  
@@ -15,6 +15,8 @@
     <%= f.text_field :address %>
     <%= f.label "Школа" %>  
     <%= f.text_field :school %>
+    <%= f.label "Класс" %>  
+    <%= f.text_field :grade %>
         <%= f.label "Skype" %>  
     <%= f.text_field :skype %>
     <%= f.label "Предметы" %>
@@ -28,8 +30,6 @@
         <% end %>
     </ul>
      </div>
-
     <%= f.submit "Сохранить" %>
 <% end %>
-
-</div>
+<div>

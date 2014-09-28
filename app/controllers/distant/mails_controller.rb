@@ -2,7 +2,7 @@ class Distant::MailsController < DistantController
 
 	def index
 		@tasks = Task.where(grade: "distant", semester: @semester.name)
-		@subjects = Subject.where(title: ["Математика","Химия","Биология","Физика"])
+		@subjects = Subject.where(title: ["Математика","Химия","Биология","Физика", "Информация"])
 		if params[:format]
 			@current_task = Task.find_by_id params[:format]
 			@task_reports =@current_task.task_reports.includes(:student)
@@ -13,7 +13,7 @@ class Distant::MailsController < DistantController
 
 	def send_task
 		@tasks = Task.where(grade: "distant", semester: @semester.name)
-		@subjects = Subject.where(title: ["Математика","Химия","Биология","Физика"])
+		@subjects = Subject.where(title: ["Математика","Химия","Биология","Физика", "Информация"])
 	end
 
 	def send_mail

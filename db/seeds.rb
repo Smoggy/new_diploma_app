@@ -6,44 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+names = ["География","Информация","Математика", "Физика", "Биология", "Химия", "Английский Язык", "История Украины", "Всемирная история", "Украинская литература"]
 
-Subject.create(
-	title: "Математика"
-	)
+names.each do |n|
+	Subject.find_or_create_by title: n
+end
 
-Subject.create(
-	title: "Физика"
-	)
-
-Subject.create(
-	title: "Биология"
-	)
-
-Subject.create(
-	title: "Химия"
-	)
-
-Subject.create(
-	title: "Английский Язык"
-	)
-
-Subject.create(
-	title: "История Украины"
-	)
-
-Subject.create(
-	title: "Всемирная история"
-	)
-
-Subject.create(
-	title: "Украинский язык"
-	)
-
-Subject.create(
-	title: "Украинская литература"
-	)
-
-Semester.create(
+Semester.find_or_create_by(
 	name: "2014",
 	active: true
 )
